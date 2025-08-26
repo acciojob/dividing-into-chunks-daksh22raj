@@ -1,8 +1,25 @@
-const arr = [1, 2, 3, 4, 1, 0, 2, 2];
+function divide(arr, n) {
+  let result = [];
+  let current = [];
+  let currentSum = 0;
 
-const divide = (arr, n) => {
-  // Write your code here
-};
+  for (let num of arr) {
+    if (currentSum + num <= n) {
+      // Add to current chunk
+      current.push(num);
+      currentSum += num;
+    } else {
+      // Start a new chunk
+      result.push(current);
+      current = [num];
+      currentSum = num;
+    }
+  }
 
-const n = prompt("Enter n: ");
-alert(JSON.stringify(divide(arr, n)));
+  // Push the last chunk
+  if (current.length > 0) {
+    result.push(current);
+  }
+
+  return result;
+}
